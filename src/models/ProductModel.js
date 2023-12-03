@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema(
     {
@@ -8,12 +8,14 @@ const productSchema = new mongoose.Schema(
         price: { type: Number, required: true },
         countInStock: { type: Number, required: true },
         rating: { type: Number, required: true },
-        description: { type: String, required: true },
+        description: { type: String },
+        discount: { type: Number },
+        selled: { type: Number }
     },
     {
-        timestamps: true  // Chú ý đúng chính tả ở đây
+        timestamps: true,
     }
 );
+const Product = mongoose.model('Product', productSchema);
 
-const Product = mongoose.model('Product', productSchema);  // Chú ý đúng chính tả ở đây
 module.exports = Product;
