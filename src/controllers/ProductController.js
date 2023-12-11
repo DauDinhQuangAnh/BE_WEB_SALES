@@ -4,7 +4,7 @@ const createProduct = async (req, res) => {
     try {
         const { name, image, type, countInStock, price, rating, description, discount } = req.body
         if (!name || !image || !type || !countInStock || !price || !rating || !discount) {
-            return res.status(400).json({
+            return res.status(200).json({
                 status: 'ERR',
                 message: 'The input is required'
             })
@@ -23,7 +23,7 @@ const updateProduct = async (req, res) => {
         const productId = req.params.id
         const data = req.body
         if (!productId) {
-            return res.status(400).json({
+            return res.status(200).json({
                 status: 'ERR',
                 message: 'The productId is required'
             })
@@ -41,7 +41,7 @@ const getDetailsProduct = async (req, res) => {
     try {
         const productId = req.params.id
         if (!productId) {
-            return res.status(400).json({
+            return res.status(200).json({
                 status: 'ERR',
                 message: 'The productId is required'
             })
@@ -59,7 +59,7 @@ const deleteProduct = async (req, res) => {
     try {
         const productId = req.params.id
         if (!productId) {
-            return res.status(400).json({
+            return res.status(200).json({
                 status: 'ERR',
                 message: 'The productId is required'
             })
@@ -77,7 +77,7 @@ const deleteMany = async (req, res) => {
     try {
         const ids = req.body.ids
         if (!ids) {
-            return res.status(400).json({
+            return res.status(200).json({
                 status: 'ERR',
                 message: 'The ids is required'
             })
@@ -95,7 +95,7 @@ const getAllProduct = async (req, res) => {
     try {
         const { limit, page, sort, filter } = req.query;
         const response = await ProductService.getAllProduct(Number(limit) || 8, Number(page) || 0, sort, filter);
-        return res.status(400).json(response);
+        return res.status(200).json(response);
     } catch (e) {
         console.error("Error in getAllProduct:", e); // In ra log để kiểm tra lỗi cụ thể
         return res.status(500).json({
